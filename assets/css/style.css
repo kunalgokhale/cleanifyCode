@@ -1,0 +1,11 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.codeContainer textarea {
+    width: 100%;
+    padding: 0 10px;
+    margin: 10px 10px;
+    white-space: pre;
+    font-family: monospace;
+}
