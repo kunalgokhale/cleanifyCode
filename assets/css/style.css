@@ -4,12 +4,13 @@
 }
 #textAreaSection {
     padding: 10px;
+    height: 90vh;
 }
 .codeContainer textarea {
     width: 100%;
     padding: 0 10px;
     white-space: pre;
     font-family: monospace;
-    height: 90vh;
     resize: none;
+    height: 90%;
 }
