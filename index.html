@@ -19,7 +19,7 @@
     
     <!-- Code Mirror Dependencies -->
     <script src="./assets/lib/codemirror.js"></script>
-    <link rel="stylesheet" href="./assetslib/codemirror.css">
+    <link rel="stylesheet" href="./assets/lib/codemirror.css">
     <script src="mode/javascript/javascript.js"></script>
 </head>
 <body>
@@ -51,8 +51,9 @@
                     </div>
                     <textarea id="sourceArea"></textarea>
                 </div>
-                <div class="col-lg-2 d-flex justify-content-center align-items-start">
-                    <button class="btn btn-primary" onclick="beautifyJSON()">Beautify</button>
+                <div class="col-lg-2 d-flex flex-column justify-content-center align-items-center">
+                    <button class="actionBtn" onclick="execute(this)" value="beautify">Beautify</button>
+                    <button class="actionBtn" onclick="execute(this)" value="toXML">JSON to XML</button>
                 </div>
                 <div class="col-lg-5 codeContainer">
                     <div>
