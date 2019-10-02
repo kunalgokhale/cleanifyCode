@@ -19,11 +19,18 @@ button {
 }
 .actionBtn {
     width: 75%;
-    background-color: coral;
-    color: brown;
+    background-image: linear-gradient(to right, #314755 0%, #26a0da 51%);
+    color: #FFF;
     margin-bottom: 1rem;
     border: none;
     border-radius: 100px;
     padding: 5px 0;
     box-shadow: 0 3px 4px 0px rgba(0,0,0,0.5);
+    transition: all 0.3s;
+    background-size: 200% auto;
 }
+.actionBtn:hover { 
+    background-position: right center;
+}
+.btn-grad {background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%)}
+.btn-grad:hover { background-position: right center; }

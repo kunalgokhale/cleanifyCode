@@ -21,6 +21,9 @@
     <script src="./assets/lib/codemirror.js"></script>
     <link rel="stylesheet" href="./assets/lib/codemirror.css">
     <script src="mode/javascript/javascript.js"></script>
+
+    <!-- JSON to YAML Lib -->
+    <script src="./assets/lib/json2yaml.js"></script>
 </head>
 <body>
     <!--[if lt IE 7]>
@@ -47,13 +50,14 @@
             <div class="row m-auto h-100">
                 <div class="col-lg-5 codeContainer">
                     <div>
-                        <h6>Input</h6>
+                        <h6>JSON Input</h6>
                     </div>
                     <textarea id="sourceArea"></textarea>
                 </div>
                 <div class="col-lg-2 d-flex flex-column justify-content-center align-items-center">
                     <button class="actionBtn" onclick="execute(this)" value="beautify">Beautify</button>
                     <button class="actionBtn" onclick="execute(this)" value="toXML">JSON to XML</button>
+                    <button class="actionBtn" onclick="execute(this)" value="toYAML">JSON to YAML</button>
                 </div>
                 <div class="col-lg-5 codeContainer">
                     <div>

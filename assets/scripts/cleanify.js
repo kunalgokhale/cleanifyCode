@@ -3,20 +3,25 @@ function initTextAreas() {
 }
 
 function execute(btnVal){
+    var result;
     switch (btnVal.value) {
         case "beautify":
-            beautifyJSON();
-            break;
+        result = beautifyJSON();
+        break;
         case "toXML":
-          JSONtoXML(JSON.parse(document.getElementById("sourceArea").value));
-          break;
-      }
+        result = JSONtoXML(JSON.parse(document.getElementById("sourceArea").value));
+        break;
+        case "toYAML":
+        result = JSONtoYAML(JSON.parse(document.getElementById("sourceArea").value));
+        break;  
+    }
+    document.getElementById("outputArea").value = result;
 }
 
 function beautifyJSON() {
     if (IsValidJSONString(document.getElementById("sourceArea").value)){
         var rawCode = JSON.parse(document.getElementById("sourceArea").value);
-        document.getElementById("outputArea").value = JSON.stringify(rawCode, null, 3);
+        return JSON.stringify(rawCode, null, 3);
     } else {
         alert("Invalid JSON input!");
     }
@@ -49,8 +54,7 @@ function JSONtoXML(obj) {
         }
         var xml = xml.replace(/<\/?[0-9]{1,}>/g, '');
         xml = beautifyXML(xml);
-        document.getElementById("outputArea").value = xml;
-        return xml
+        return xml;
     } else {
         alert("Invalid JSON input!");
     }
@@ -74,15 +78,21 @@ function beautifyXML(xml) {
         } else {
             indent = 0;
         }
-
+        
         var padding = '';
         for (var i = 0; i < pad; i++) {
             padding += '  ';
         }
-
+        
         formatted += padding + node + '\r\n';
         pad += indent;
     });
-
+    
     return formatted;
+}
+
+function JSONtoYAML(obj){
+    // var obj  = { hello: 'world', hello2: [ 'hello', 'world' ] };
+    var yaml = json2yaml(obj);
+    return yaml;
 }
