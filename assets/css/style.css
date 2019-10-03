@@ -32,5 +32,14 @@ button {
 .actionBtn:hover { 
     background-position: right center;
 }
-.btn-grad {background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%)}
-.btn-grad:hover { background-position: right center; }
+footer {
+    background-color: #314755;
+    padding: 0 1rem;
+    color: #fff;
+}
+footer a {
+    color: #fff;
+}
+footer ul {
+    text-align: right;
+}
