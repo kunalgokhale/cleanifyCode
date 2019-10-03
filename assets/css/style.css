@@ -15,7 +15,15 @@
     height: 90%;
 }
 button {
-    border-radius: 100px;
+    border-radius: 100px !important;
+    box-shadow: 0 3px 4px 0px rgba(0,0,0,0.5);
+}
+button:active {
+    box-shadow: none;
+    transition: all 0.3s;
+}
+button:focus {
+    outline: none !important;
 }
 .actionBtn {
     width: 75%;
@@ -23,9 +31,7 @@ button {
     color: #FFF;
     margin-bottom: 1rem;
     border: none;
-    border-radius: 100px;
     padding: 5px 0;
-    box-shadow: 0 3px 4px 0px rgba(0,0,0,0.5);
     transition: all 0.3s;
     background-size: 200% auto;
 }
@@ -33,9 +39,11 @@ button {
     background-position: right center;
 }
 footer {
-    background-color: #314755;
-    padding: 0 1rem;
+    background-color: #39627d;
     color: #fff;
+}
+footer .footer-copyright {
+    background-color: #314755;
 }
 footer a {
     color: #fff;

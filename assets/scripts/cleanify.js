@@ -23,7 +23,7 @@ function beautifyJSON() {
         var rawCode = JSON.parse(document.getElementById("sourceArea").value);
         return JSON.stringify(rawCode, null, 3);
     } else {
-        alert("Invalid JSON input!");
+        return ("Invalid JSON input!");
     }
 }
 
