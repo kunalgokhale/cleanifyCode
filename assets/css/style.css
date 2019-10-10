@@ -25,6 +25,10 @@ button:active {
 button:focus {
     outline: none !important;
 }
+button.navbar-toggler {
+    border: none;
+    box-shadow: none;
+}
 .actionBtn {
     width: 75%;
     background-image: linear-gradient(to right, #314755 0%, #26a0da 51%);
