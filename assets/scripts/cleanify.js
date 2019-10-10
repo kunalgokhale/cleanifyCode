@@ -9,17 +9,17 @@ function execute(btnVal){
         result = beautifyJSON();
         break;
         case "toXML":
-        result = JSONtoXML(JSON.parse(document.getElementById("sourceArea").value));
+        result = JSONtoXML(document.getElementById("sourceArea").value);
         break;
         case "toYAML":
-        result = JSONtoYAML(JSON.parse(document.getElementById("sourceArea").value));
+        result = JSONtoYAML(document.getElementById("sourceArea").value);
         break;  
     }
     document.getElementById("outputArea").value = result;
 }
 
 function beautifyJSON() {
-    if (IsValidJSONString(document.getElementById("sourceArea").value)){
+    if (IsValidJSONString(document.getElementById("sourceArea").value) && document.getElementById("sourceArea").value != ''){
         var rawCode = JSON.parse(document.getElementById("sourceArea").value);
         return JSON.stringify(rawCode, null, 3);
     } else {
@@ -38,7 +38,8 @@ function IsValidJSONString(str) {
 
 function JSONtoXML(obj) {
     var xml = '';
-    if (IsValidJSONString(document.getElementById("sourceArea").value)){
+    if (IsValidJSONString(obj) && document.getElementById("sourceArea").value != ''){
+        obj = JSON.parse(obj);
         for (var prop in obj) {
             if (obj[prop] instanceof Array) {
                 for (var array in obj[prop]) {
@@ -56,7 +57,7 @@ function JSONtoXML(obj) {
         xml = beautifyXML(xml);
         return xml;
     } else {
-        alert("Invalid JSON input!");
+        return "Invalid JSON input!";
     }
 }
 
@@ -87,12 +88,16 @@ function beautifyXML(xml) {
         formatted += padding + node + '\r\n';
         pad += indent;
     });
-    
+
     return formatted;
 }
 
 function JSONtoYAML(obj){
-    // var obj  = { hello: 'world', hello2: [ 'hello', 'world' ] };
-    var yaml = json2yaml(obj);
-    return yaml;
+    if (IsValidJSONString(obj) && document.getElementById("sourceArea").value != ''){
+        obj = JSON.parse(obj);
+        var yaml = json2yaml(obj);
+        return yaml;
+    } else {
+        return "Invalid JSON Input!";
+    }
 }
