@@ -2,6 +2,17 @@
     padding: 0;
     margin: 0;
 }
+
+/* Header */
+.customNavbar li.nav-item a.nav-link {
+    color: #757575;
+    font-weight: 400;
+    cursor: pointer;
+}
+.customNavbar li.nav-item a.nav-link.active {
+    color: #314755;
+    font-weight: 600;
+}
 #textAreaSection {
     padding: 10px;
     height: 90vh;

@@ -2,20 +2,64 @@ function initTextAreas() {
     var myCodeMirror = CodeMirror.fromTextArea(document.getElementById("sourceArea"));
 }
 
+function setSource(element) {
+    var operands = ["to-XML", "to-JSON", "to-YAML"];
+    var navLinks = $(".nav-link");
+    var ele = element;
+    if(navLinks) {
+        for (i=0; i<navLinks.length; i++){
+            navLinks.removeClass("active");
+        }
+        ele.classList.add("active");
+    }
+    var currentOperation = 'to-'+ele.getAttribute("value");
+    var opList = operands;
+    var operationButtons = $(".operand");
+    
+    for(i=0; i<opList.length; i++) {
+        if(opList[i] === currentOperation){
+            opList.splice(i, 1);
+        }
+    }
+
+    for(i=0; i< operationButtons.length; i++){
+        operationButtons[i].setAttribute("value", opList[i]);
+        
+        operationButtons[i].innerHTML = ele.getAttribute("value") + " " + (opList[i].split("-"))[0] + " " + (opList[i].split("-"))[1];
+    }
+}
+
 function execute(btnVal){
     var result;
     switch (btnVal.value) {
         case "beautify":
-        result = beautifyJSON();
+            ele = $(".nav-link.active");
+            console.log("ele : " + ele);
+            if(ele[0].getAttribute("value") == "JSON") {
+                result = beautifyJSON(document.getElementById("sourceArea").value);
+            } else if(ele[0].getAttribute("value") == "XML") {
+                result = beautifyXML(document.getElementById("sourceArea").value);
+            }
         break;
-        case "toXML":
+        case "to-XML":
         result = JSONtoXML(document.getElementById("sourceArea").value);
         break;
-        case "toYAML":
+        case "to-YAML":
         result = JSONtoYAML(document.getElementById("sourceArea").value);
         break;  
     }
     document.getElementById("outputArea").value = result;
+}
+
+
+// JSON Operations
+function IsValidJSONString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
 }
 
 function beautifyJSON() {
@@ -25,15 +69,6 @@ function beautifyJSON() {
     } else {
         return ("Invalid JSON input!");
     }
-}
-
-function IsValidJSONString(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
 }
 
 function JSONtoXML(obj) {
@@ -61,6 +96,18 @@ function JSONtoXML(obj) {
     }
 }
 
+function JSONtoYAML(obj){
+    if (IsValidJSONString(obj) && document.getElementById("sourceArea").value != ''){
+        obj = JSON.parse(obj);
+        var yaml = json2yaml(obj);
+        return yaml;
+    } else {
+        return "Invalid JSON Input!";
+    }
+}
+
+
+// XML Operations
 function beautifyXML(xml) {
     var formatted = '';
     var reg = /(>)(<)(\/*)/g;
@@ -88,16 +135,6 @@ function beautifyXML(xml) {
         formatted += padding + node + '\r\n';
         pad += indent;
     });
-
+    // formatted = formatted.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/ /g, '&nbsp;').replace(/\n/g,'<br />');
     return formatted;
-}
-
-function JSONtoYAML(obj){
-    if (IsValidJSONString(obj) && document.getElementById("sourceArea").value != ''){
-        obj = JSON.parse(obj);
-        var yaml = json2yaml(obj);
-        return yaml;
-    } else {
-        return "Invalid JSON Input!";
-    }
 }
